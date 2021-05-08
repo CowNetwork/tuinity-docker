@@ -4,7 +4,7 @@ COPY . /minecraft/
 RUN apt update
 RUN apt install -y git
 RUN apt install -y maven
-RUN git submodule update --init --recursive
+RUN git submodule update --init --recursive --depth 50
 RUN git config --global user.email "machine@cow.network"
 RUN git config --global user.name "udder-machine"
 RUN ./Tuinity/tuinity jar

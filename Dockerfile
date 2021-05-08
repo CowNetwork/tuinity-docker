@@ -1,10 +1,19 @@
-FROM adoptopenjdk/openjdk11:alpine-slim AS builder
+FROM adoptopenjdk/openjdk11:debian-slim AS builder
 WORKDIR /minecraft
-RUN ./tuinity jar
-RUN tuinity-paperclip.jar
+COPY . /minecraft/
+RUN apt update
+RUN apt install -y git
+RUN apt install -y maven
+RUN git submodule update --init --recursive
+RUN git config --global user.email "machine@cow.network"
+RUN git config --global user.name "udder-machine"
+RUN ./Tuinity/tuinity jar
+RUN java -jar Tuinity/tuinity-paperclip.jar
 
 FROM gcr.io/distroless/java:11
+WORKDIR /opt/spigot
 EXPOSE 25565
 COPY --from=builder /minecraft/cache/patched*.jar /opt/spigot/spigot.jar
-CMD -Dcom.mojang.eula.agree=true spigot.jar --nogui
+ENV JAVA_TOOL_OPTIONS=-Dcom.mojang.eula.agree=true 
+CMD ["spigot.jar", "--nogui"]
 

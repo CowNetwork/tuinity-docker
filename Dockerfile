@@ -6,7 +6,7 @@ RUN apt install -y git
 RUN apt install -y maven
 RUN git config --global user.email "machine@cow.network"
 RUN git config --global user.name "udder-machine"
-RUN ./Tuinity/tuinity jar fast
+RUN ./Tuinity/tuinity jar
 RUN java -jar Tuinity/tuinity-paperclip.jar
 
 FROM gcr.io/distroless/java:11

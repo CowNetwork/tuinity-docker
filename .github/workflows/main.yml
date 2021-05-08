@@ -29,5 +29,6 @@ jobs:
       - name: build and push
         uses: docker/build-push-action@v2
         with:
+          context: .
           push: true
           tags: ghcr.io/cownetwork/tuinity:${{ steps.tag.outputs.version }}-${{steps.tag.outputs.build}}

@@ -16,7 +16,7 @@ jobs:
           VERSION=$(echo "$TAG" | cut -d '+' -f 1)
           BUILD=$(echo "$TAG" | cut -d '+' -f 2)
           echo "::set-output name=version::$VERSION"
-          echp "::set-output name=build::$BUILD"
+          echo "::set-output name=build::$BUILD"
       - name: docker hub login
         uses: docker/login-action@v1
         with:

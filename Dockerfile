@@ -6,9 +6,7 @@ RUN apt install -y git
 RUN apt install -y maven
 RUN git config --global user.email "machine@cow.network"
 RUN git config --global user.name "udder-machine"
-
-RUN git submodule update --init --recursive --depth 50
-
+RUN git submodule update --init --recursive --depth 100
 RUN ./Tuinity/tuinity jar
 RUN java -jar Tuinity/tuinity-paperclip.jar
 
